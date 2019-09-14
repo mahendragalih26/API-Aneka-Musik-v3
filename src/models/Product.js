@@ -34,7 +34,7 @@ module.exports = {
 
         //query show all outlet
         // let query = `SELECT * FROM products `
-        let query = `SELECT * FROM tbl_product `;
+        let query = `SELECT tbl_product.id, tbl_product.name, tbl_product.price, tbl_product.stock, tbl_category.name AS category, tbl_branch.name AS branch , tbl_product.img, tbl_product.description FROM tbl_product, tbl_branch, tbl_category WHERE tbl_category.id = tbl_product.id_category AND tbl_branch.id = tbl_product.id_branch `;
 
         if (searchDefined || fieldDefined) {
           // query += `WHERE ${field} LIKE '%${searching}%' `;
@@ -76,21 +76,9 @@ module.exports = {
     });
   },
 
-  getMax: () => {
-    return new Promise((resolve, reject) => {
-      conn.query("SELECT MAX(id) FROM products", (err, result) => {
-        if (!err) {
-          resolve(result);
-        } else {
-          reject(new Error(err));
-        }
-      });
-    });
-  },
-
   insertProduct: data => {
     return new Promise((resolve, reject) => {
-      conn.query("INSERT products SET ?", data, (err, result) => {
+      conn.query("INSERT tbl_product SET ?", data, (err, result) => {
         if (!err) {
           resolve(result);
         } else {
@@ -102,19 +90,23 @@ module.exports = {
 
   updateProduct: (data, id) => {
     return new Promise((resolve, reject) => {
-      conn.query("UPDATE products SET ? WHERE ?", [data, id], (err, result) => {
-        if (!err) {
-          resolve(result);
-        } else {
-          reject(err);
+      conn.query(
+        "UPDATE tbl_product SET ? WHERE ?",
+        [data, id],
+        (err, result) => {
+          if (!err) {
+            resolve(result);
+          } else {
+            reject(err);
+          }
         }
-      });
+      );
     });
   },
 
   deleteProduct: id => {
     return new Promise((resolve, reject) => {
-      conn.query("DELETE FROM products WHERE ?", [id], (err, result) => {
+      conn.query("DELETE FROM tbl_product WHERE ?", [id], (err, result) => {
         if (!err) {
           resolve(result);
         } else {
