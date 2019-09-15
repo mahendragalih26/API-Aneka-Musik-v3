@@ -1,4 +1,5 @@
 const conn = require("../config/db");
+let productQuery = `SELECT tbl_product.id, tbl_product.name, tbl_product.price, tbl_product.stock, tbl_category.name AS category, tbl_category.id AS id_category, tbl_branch.id AS id_branch, tbl_branch.name AS branch , tbl_product.img, tbl_product.description FROM tbl_product, tbl_branch, tbl_category WHERE tbl_category.id = tbl_product.id_category AND tbl_branch.id = tbl_product.id_branch `;
 
 module.exports = {
   getAll: queryParams => {
@@ -34,7 +35,7 @@ module.exports = {
 
         //query show all outlet
         // let query = `SELECT * FROM products `
-        let query = `SELECT tbl_product.id, tbl_product.name, tbl_product.price, tbl_product.stock, tbl_category.name AS category, tbl_branch.name AS branch , tbl_product.img, tbl_product.description FROM tbl_product, tbl_branch, tbl_category WHERE tbl_category.id = tbl_product.id_category AND tbl_branch.id = tbl_product.id_branch `;
+        let query = `${productQuery} `;
 
         if (searchDefined || fieldDefined) {
           // query += `WHERE ${field} LIKE '%${searching}%' `;

@@ -22,7 +22,7 @@ module.exports = {
       let totalPage = 0;
 
       //query untuk menghitung total data
-      let query = `SELECT COUNT (id) AS total FROM categorys `;
+      let query = `SELECT COUNT (id) AS total FROM tbl_category `;
 
       conn.query(query, (err, rows) => {
         if (!err) {
@@ -34,14 +34,14 @@ module.exports = {
 
         //query show all outlet
         // let query = `SELECT * FROM products `
-        let query = `SELECT * FROM categorys `;
+        let query = `SELECT * FROM tbl_category `;
 
         if (searchDefined || fieldDefined) {
           // query += `WHERE ${field} LIKE '%${searching}%' `;
           // if (field2 != null) {
           //   query += `AND outlet.${field1} LIKE '%${searching}% AND outlet.${$field2} LIKE '%${searching}%'`;
           // }
-          query += `AND categorys.${field} LIKE '%${searching}%' `;
+          query += `AND tbl_category.${field} LIKE '%${searching}%' `;
         }
 
         query += `ORDER BY ${sortBy} ${typeSort} `;
@@ -78,7 +78,7 @@ module.exports = {
 
   insertCategory: data => {
     return new Promise((resolve, reject) => {
-      conn.query("INSERT categorys SET ?", data, (err, result) => {
+      conn.query("INSERT tbl_category SET ?", data, (err, result) => {
         if (!err) {
           resolve(result);
         } else {
@@ -91,7 +91,7 @@ module.exports = {
   updateCategory: (data, id) => {
     return new Promise((resolve, reject) => {
       conn.query(
-        "UPDATE categorys SET ? WHERE ?",
+        "UPDATE tbl_category SET ? WHERE ?",
         [data, id],
         (err, result) => {
           if (!err) {
@@ -106,7 +106,7 @@ module.exports = {
 
   deleteCategory: id => {
     return new Promise((resolve, reject) => {
-      conn.query("DELETE FROM categorys WHERE ?", [id], (err, result) => {
+      conn.query("DELETE FROM tbl_category WHERE ?", [id], (err, result) => {
         if (!err) {
           resolve(result);
         } else {

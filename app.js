@@ -6,6 +6,8 @@ const logger = require("morgan");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const Route = require("./src/routes/root");
+const path = require("path");
+const multer = require("multer");
 
 const port = process.env.SERVER_PORT || 3000;
 

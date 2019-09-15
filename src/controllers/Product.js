@@ -1,4 +1,5 @@
 const modelProduct = require("../models/Product");
+const multer = require("../middleware/multer");
 
 module.exports = {
   getAll: (req, res) => {
@@ -19,11 +20,12 @@ module.exports = {
   insertProduct: (req, res) => {
     const data = {
       name: req.body.name,
-      price: req.body.pricce,
+      price: req.body.price,
       stock: req.body.stock,
       description: req.body.description,
       id_branch: req.body.id_branch,
-      id_category: req.body.id_category
+      id_category: req.body.id_category,
+      img: req.body.MyImage
     };
     modelProduct
       .insertProduct(data)
@@ -34,11 +36,12 @@ module.exports = {
   updateProduct: (req, res) => {
     const data = {
       name: req.body.name,
-      price: req.body.pricce,
+      price: req.body.price,
       stock: req.body.stock,
       description: req.body.description,
       id_branch: req.body.id_branch,
-      id_category: req.body.id_category
+      id_category: req.body.id_category,
+      img: req.body.MyImage
     };
 
     const id = {

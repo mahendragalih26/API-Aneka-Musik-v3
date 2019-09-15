@@ -1,4 +1,5 @@
 const express = require("express");
+const Multer = require("../middleware/Multer");
 const router = express.Router();
 
 const main = require("../controllers/Product");

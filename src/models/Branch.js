@@ -22,7 +22,7 @@ module.exports = {
       let totalPage = 0;
 
       //query untuk menghitung total data
-      let query = `SELECT COUNT (id) AS total FROM branches `;
+      let query = `SELECT COUNT (id) AS total FROM tbl_branch `;
 
       conn.query(query, (err, rows) => {
         if (!err) {
@@ -34,14 +34,14 @@ module.exports = {
 
         //query show all outlet
         // let query = `SELECT * FROM products `
-        let query = `SELECT * FROM branches `;
+        let query = `SELECT * FROM tbl_branch `;
 
         if (searchDefined || fieldDefined) {
           // query += `WHERE ${field} LIKE '%${searching}%' `;
           // if (field2 != null) {
           //   query += `AND outlet.${field1} LIKE '%${searching}% AND outlet.${$field2} LIKE '%${searching}%'`;
           // }
-          query += `AND branches.${field} LIKE '%${searching}%' `;
+          query += `AND tbl_branch.${field} LIKE '%${searching}%' `;
         }
 
         query += `ORDER BY ${sortBy} ${typeSort} `;
@@ -78,7 +78,7 @@ module.exports = {
 
   insertBranch: data => {
     return new Promise((resolve, reject) => {
-      conn.query("INSERT branches SET ?", data, (err, result) => {
+      conn.query("INSERT tbl_branch SET ?", data, (err, result) => {
         if (!err) {
           resolve(result);
         } else {
@@ -90,19 +90,23 @@ module.exports = {
 
   updateBranch: (data, id) => {
     return new Promise((resolve, reject) => {
-      conn.query("UPDATE branches SET ? WHERE ?", [data, id], (err, result) => {
-        if (!err) {
-          resolve(result);
-        } else {
-          reject(err);
+      conn.query(
+        "UPDATE tbl_branch SET ? WHERE ?",
+        [data, id],
+        (err, result) => {
+          if (!err) {
+            resolve(result);
+          } else {
+            reject(err);
+          }
         }
-      });
+      );
     });
   },
 
   deleteBranch: id => {
     return new Promise((resolve, reject) => {
-      conn.query("DELETE FROM branches WHERE ?", [id], (err, result) => {
+      conn.query("DELETE FROM tbl_branch WHERE ?", [id], (err, result) => {
         if (!err) {
           resolve(result);
         } else {
