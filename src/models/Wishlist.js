@@ -10,9 +10,9 @@ module.exports = {
       const fieldDefined = queryParams.field != undefined;
 
       //Do query
-      let query = `SELECT * FROM tbl_wishlist `;
+      let query = `SELECT tbl_wishlist.id, tbl_wishlist.id_product, tbl_wishlist.id_user, tbl_product.name as name, tbl_product.img FROM tbl_wishlist, tbl_product WHERE tbl_product.id = tbl_wishlist.id_product `;
       if (searchDefined || fieldDefined) {
-        query += `WHERE ${field} LIKE '%${searching}%' `;
+        query += `AND ${field} = ${searching} `;
         //   if (field2 != null) {
         //     query += `AND outlet.${field1} LIKE '%${searching}% AND outlet.${$field2} LIKE '%${searching}%'`;
         //   }

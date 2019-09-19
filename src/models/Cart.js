@@ -12,7 +12,7 @@ module.exports = {
       //Do query
       let query = `SELECT tbl_cart.id, tbl_cart.id_product, tbl_cart.id_user, tbl_cart.qty, tbl_product.name, tbl_product.price, tbl_product.stock FROM tbl_cart, tbl_product WHERE tbl_product.id = tbl_cart.id_product `;
       if (searchDefined || fieldDefined) {
-        query += `WHERE ${field} LIKE '%${searching}%' `;
+        query += `AND ${field} = ${searching} `;
         //   if (field2 != null) {
         //     query += `AND outlet.${field1} LIKE '%${searching}% AND outlet.${$field2} LIKE '%${searching}%'`;
         //   }

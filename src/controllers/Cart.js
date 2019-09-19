@@ -1,4 +1,4 @@
-const modelWishlist = require("../models/Wishlist");
+const modelCart = require("../models/Cart");
 const multer = require("../middleware/multer");
 
 module.exports = {
@@ -7,20 +7,20 @@ module.exports = {
       field: req.query.field,
       search: req.query.search
     };
-    modelWishlist
+    modelCart
       .getAll(queryParams)
       .then(result => res.json(result))
       .catch(err => console.log(err));
   },
 
-  insertWishlist: (req, res) => {
+  insertCart: (req, res) => {
     const data = {
       id_product: req.body.id_product,
-      id_user: 1,
-      qty: req.body.id_product
+      id_user: req.body.id_user,
+      qty: 1
     };
-    modelWishlist
-      .insertWishlist(data)
+    modelCart
+      .insertCart(data)
       .then(result => res.json(result))
       .catch(err => console.log(err));
   },
