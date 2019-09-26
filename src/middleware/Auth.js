@@ -22,23 +22,5 @@ module.exports = {
       console.log(err);
       res.json(403, { msg: "login first" });
     }
-  },
-  verifyAdmin: (req, res, next) => {
-    if (req.level === "admin") {
-      next();
-    } else {
-      res.sendStatus(403);
-    }
-  },
-  addBook: (req, res, next) => {
-    if (req.level === "admin") {
-      req.id_status = 1;
-      req.addBy = "Admin";
-      next();
-    } else {
-      req.id_status = 3;
-      req.addBy = req.name;
-      next();
-    }
   }
 };

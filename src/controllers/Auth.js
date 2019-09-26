@@ -65,7 +65,7 @@ const crypto = require("crypto");
               if (!err) {
                 const data = {
                   ...user,
-                  token: `Bearer ${token}`
+                  token: `Aneka ${token}`
                 };
                 res.json({ data });
                 // res.header('auth-token', token).send(token);
