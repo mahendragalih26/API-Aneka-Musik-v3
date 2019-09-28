@@ -6,7 +6,7 @@ const router = express.Router();
 const main = require("../controllers/Product");
 
 router.get("/", main.getAll);
-router.post("/", Auth.authLogin, main.insertProduct);
+router.post("/", Multer.multerUploads, main.insertProduct);
 router.patch("/:id", Auth.authLogin, main.updateProduct);
 router.delete("/:id", Auth.authLogin, main.deleteProduct);
 

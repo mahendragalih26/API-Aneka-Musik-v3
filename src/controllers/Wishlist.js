@@ -41,11 +41,11 @@ module.exports = {
   //   },
 
   deleteWishlist: (req, res) => {
-    const id = {
-      id: req.params.id
+    const id_product = {
+      id_product: req.params.id
     };
     modelWishlist
-      .deleteWishlist(id)
+      .deleteWishlist(id_product)
       .then(result => res.json(result))
       .catch(err => console.log(err));
   }

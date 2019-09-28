@@ -68,15 +68,19 @@ module.exports = {
   //   });
   // },
 
-  deleteWishlist: id => {
+  deleteWishlist: id_product => {
     return new Promise((resolve, reject) => {
-      conn.query("DELETE FROM tbl_wishlist WHERE ?", [id], (err, result) => {
-        if (!err) {
-          resolve(result);
-        } else {
-          reject(err);
+      conn.query(
+        "DELETE FROM tbl_wishlist WHERE ?",
+        [id_product],
+        (err, result) => {
+          if (!err) {
+            resolve(result);
+          } else {
+            reject(err);
+          }
         }
-      });
+      );
     });
   }
 };
